@@ -1,11 +1,14 @@
 {
   "name": "admin-management-portal",
+  "homepage": "https://hady994.github.io/Admin-Management-Portal/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d dist",
     "preview": "vite preview"
   },
   "dependencies": {
