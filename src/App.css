@@ -3,6 +3,8 @@
   height: 100%;
   margin: 0;
   padding: 0;
+  background: rgb(44 44 56);
+  color: lightgray;
 }
 
 @keyframes logo-spin {
@@ -19,10 +21,6 @@
     animation: logo-spin infinite 20s linear;
   }
 }
-.background {
-  background: rgb(44 44 56);
-  color: lightgray;
-}
 .buttons:focus {
   background: violet;
 }
@@ -36,4 +34,10 @@
 }
 .boards:focus {
   background: rgb(113, 113, 243);
+}
+.sidebar {
+  transition-duration: 500ms !important;
+}
+.sidebar-open {
+  transform: translateX(-120px);
 }
