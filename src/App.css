@@ -26,3 +26,14 @@
 .buttons:focus {
   background: violet;
 }
+.spacing {
+  letter-spacing: 3px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.toggle {
+  background-color: rgb(113, 113, 243);
+}
+.boards:focus {
+  background: rgb(113, 113, 243);
+}
