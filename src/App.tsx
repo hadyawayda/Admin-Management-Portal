@@ -1,5 +1,7 @@
+import { Dialog } from '@headlessui/react'
 import { useEffect, useState } from 'react'
 import './App.css'
+import MyModal from './modal'
 
 type Subtasks = {
   title: string,
@@ -81,11 +83,17 @@ function App() {
         xxxxxxxxxxxxxxxxxxxxxxx
       </div>
       {createBoard
-        ? <div onClick={handleCloseCreateBoard} className='absolute transition-all duration-700
-          bg-blue-400 bg-opacity-10 backdrop-blur-md h-full w-full flex justify-center items-center'>
-            <div onClick={undefined} className='bg-indigo-800 opacity-80 w-60 h-60 rounded-3xl'>
+        ? <div className='absolute 
+          bg-indigo-400 bg-opacity-10 backdrop-blur-md 
+          h-full
+              w-full flex justify-center items-center'>
+                {/* <MyModal /> */}
+          <Dialog open={createBoard} onClose={() => setCreateBoard(false)}
+            className='fixed flex justify-center items-center bg-indigo-800
+              transition-all duration-700 opacity-80 w-60 h-60 inset-1/2 
+              -translate-x-1/2 -translate-y-1/2 rounded-3xl'>
               aaaaaaa
-            </div>
+            </Dialog>
           </div>
         : null}
     </div>

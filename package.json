@@ -7,11 +7,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
