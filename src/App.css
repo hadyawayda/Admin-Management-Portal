@@ -36,7 +36,7 @@
   background: rgb(113, 113, 243);
 }
 .sidebar {
-  transition: all 0.35s cubic-bezier(0.18, 0.19, 0.52, 1.23)!important;
+  transition: all 0.35s cubic-bezier(0.18, 0.19, 0.52, 1.18)!important;
 }
 .sidebar-open {
   transform: translateX(-300px);
