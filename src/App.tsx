@@ -49,7 +49,7 @@ function App() {
   console.log(isSidebar)
   return (
     <div className="flex justify-between h-screen w-full">
-      <div className={`flex flex-col justify-between w-80 sm:w-80 border-r-2 border-gray-600 border-opacity-40 transition-all ${isSidebar ? 'sidebar-open' : ''}`}>
+      <div onClick={isSidebar ? handleSidebar : undefined} className={`flex flex-col justify-between w-80 sm:w-80 border-r-2 border-gray-600 border-opacity-40 transition-all sidebar ${isSidebar ? 'hover:bg-indigo-600 sidebar-open' : ''}`}>
         <div className='flex flex-col'>
           <div className='flex flex-col mb-6 justify-between h-20 px-12'>
             <h1 className='pt-6 text-4xl text-white'>Kanban</h1>
@@ -67,8 +67,9 @@ function App() {
         <div className='flex flex-col justify-between h-30'>
           <div className='h-12 toggle text-center mx-6 rounded-md py-3'>Toggle Dark Mode</div>
           <button onClick={handleSidebar} className='h-20 text text-center py-4'>Hide Sidebar</button>
+          
         </div>
-      </div> 
+      </div>
       <div className="card">
         xxxxxxxxxxxxxxxxxxxxxxx
       </div>
