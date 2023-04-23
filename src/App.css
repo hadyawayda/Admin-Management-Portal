@@ -40,4 +40,8 @@
 }
 .sidebar-open {
   transform: translateX(-300px);
+  text-align: justify;
 }
+/* .dialog {
+  transition: all 0.7s ease-in-out;
+} */

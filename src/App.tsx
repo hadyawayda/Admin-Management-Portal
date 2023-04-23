@@ -1,7 +1,6 @@
-import { Dialog } from '@headlessui/react'
-import { useEffect, useState } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useEffect, useState } from 'react'
 import './App.css'
-import MyModal from './modal'
 
 type Subtasks = {
   title: string,
@@ -31,7 +30,7 @@ function App() {
   const [createBoard, setCreateBoard] = useState(false);
 
   async function getData () {
-    const res = await fetch('/data.json');
+    const res = await fetch('./data.json');
     const data = await res.json();
     setBoards(data.boards);
   }
@@ -66,7 +65,8 @@ function App() {
           <div className='py-3 px-6 sm:px-12 spacing'>ALL BOARDS (8)</div>
           <div className='flex flex-col items-start pr-6'>
             {boards.map((a) => (
-              <button className='buttons py-3 pl-6 sm:pl-12 text-left w-full rounded-r-full transition-all duration-300 boards'>{a.name}</button>
+              <button className='buttons py-3 pl-6 sm:pl-12 text-left w-full 
+              rounded-r-full transition-all duration-300 boards'>{a.name}</button>
             ))}
           </div>
           <div>  
@@ -82,20 +82,60 @@ function App() {
       <div className="card">
         xxxxxxxxxxxxxxxxxxxxxxx
       </div>
-      {createBoard
-        ? <div className='absolute 
-          bg-indigo-400 bg-opacity-10 backdrop-blur-md 
-          h-full
-              w-full flex justify-center items-center'>
-                {/* <MyModal /> */}
-          <Dialog open={createBoard} onClose={() => setCreateBoard(false)}
-            className='fixed flex justify-center items-center bg-indigo-800
-              transition-all duration-700 opacity-80 w-60 h-60 inset-1/2 
-              -translate-x-1/2 -translate-y-1/2 rounded-3xl'>
-              aaaaaaa
-            </Dialog>
+      <Transition appear show={createBoard} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={handleCloseCreateBoard}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="inset-0 fixed bg-indigo-400 bg-opacity-10 backdrop-blur-md h-full" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-medium leading-6 text-gray-900"
+                  >
+                    Payment successful
+                  </Dialog.Title>
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-500">
+                      Your payment has been successfully submitted. We’ve sent
+                      you an email with all of the details of your order.
+                    </p>
+                  </div>
+
+                  <div className="mt-4">
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={handleCloseCreateBoard}
+                    >
+                      Got it, thanks!
+                    </button>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
           </div>
-        : null}
+        </Dialog>
+      </Transition>
     </div>
   )
 }
