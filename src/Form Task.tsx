@@ -1,7 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
+import Statuses from "./Statuses";
 
 type Subtasks = {
+  id: number,
   title: string,
   isCompleted: boolean,
 } 
@@ -16,18 +18,17 @@ type Tasks = {
 function Form() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [subtasks, setSubtasks] = useState<Subtasks[]>([{title: 'e.g. Make coffee', isCompleted:false}, {title: 'e.g. Drink coffee & smile', isCompleted:false}]);
+  const [subtasks, setSubtasks] = useState<Subtasks[]>([{id:0, title: 'e.g. Make coffee', isCompleted:false}, {id:0, title: 'e.g. Drink coffee & smile', isCompleted:false}]);
   const [tasks, setTasks] = useState<Tasks[]>([]);
   const [status, setStatus] = useState('')
   
   function handleSubtask() {
-    setSubtasks([...subtasks, {
-      title: title,
-      isCompleted: false
-    }])
   }
-  function handleRemoveSubtask(title: string) {
-    setSubtasks(subtasks.filter(s => s.title !== title))
+  function handleAddSubtask() {
+    setSubtasks([...subtasks, {id:subtasks.length ,title: '', isCompleted: false}])
+  }
+  function handleRemoveSubtask(id: number) {
+  setSubtasks(subtasks.filter((s, index) => index !== id));
   }
 
   return (
@@ -73,31 +74,26 @@ function Form() {
               </div>
               <div className="flex flex-col mt-8 justify-around">
                 Subtasks
-                {subtasks.map((subtask) => (
+                {subtasks.map((subtask, index) => (
                   <div className="flex justify-between items-center">
-                    <input key={subtask.title} type="text" onChange={handleSubtask} placeholder={subtask.title}
+                    <input key={subtask.id} type="text" onChange={handleSubtask} placeholder={subtask.title}
                     className='task-background grow mt-3 border-gray-500 border-opacity-30 border-solid border-2 rounded-md h-11 p-4 text-gray-500' />
-                    <button type="button" onClick={() => handleRemoveSubtask(subtask.title)} className="w-8 ml-2 mt-2.5 flex justify-center items-center">
+                    <button type="button" onClick={() => handleRemoveSubtask(index)} className="w-8 ml-2 mt-2.5 flex justify-center items-center">
                       <svg className="" width="15" height="15" xmlns="http://www.w3.org/2000/svg"><g fill="#828FA3" fill-rule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g></svg>
                     </button>
                   </div>  
                 ))}
                 
-                <button className='bg-white mt-4 p-3 rounded-full indigo-text transition-colors duration-500 '>+ Add New Subtask</button>
+                <button onClick={handleAddSubtask} className='bg-white mt-4 p-3 rounded-full indigo-text transition-colors duration-300'>+ Add New Subtask</button>
               </div>
               <div className="flex flex-col mt-8 justify-around">
                 Status
-                <select name="address" value={status} onChange={e => setStatus(e.target.value)}
-                  className='task-background mt-2 border-gray-500 border-opacity-30 border-solid border-2 rounded-md h-12 px-4 text-white'>
-                  <option value="Todo">Todo</option>
-                  <option value="Doing">Doing</option>
-                  <option value="Done">Done</option>
-                </select>
+                <Statuses/>
               </div>
               <button
                 type="submit"
                 className="inline-flex justify-center w-full mb-4 mt-8 rounded-full bg-indigo-500 p-3
-                  text-white transition-colors duration-500 indigo"
+                  text-white transition-colors duration-300 indigo"
               >
                 Create Task
               </button>
