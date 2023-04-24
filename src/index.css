@@ -17,6 +17,9 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+:focus-visible {
+    outline: -webkit-focus-ring-color auto 0px;
+}
 
 a {
   font-weight: 500;

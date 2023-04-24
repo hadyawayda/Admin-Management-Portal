@@ -1,28 +1,23 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { CheckIcon } from '@heroicons/react/20/solid'
 
-
-
-export default function Statuses() {
-  const statuses = [
+const statuses = [
     { name: 'Todo' },
     { name: 'Doing' },
     { name: 'Done' },
   ]
-  const [status, setStatus] = useState(statuses[0])
 
+export default function Statuses() {
+  const [status, setStatus] = useState(statuses[0])
   return (
-    <div className="w-72">
+    <div className="w-full">
       <Listbox value={status} onChange={setStatus}>
         <div className="relative mt-1">
-          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+          <Listbox.Button className="relative border-gray-500 border-opacity-30 border-solid border-2 rounded-md h-11  w-full cursor-default py-2 pl-3 pr-10 text-left focus:outline-none focus:border-indigo-500 sm:text-sm">
             <span className="block truncate">{status.name}</span>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <ChevronUpDownIcon
-                className="h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
+            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
+              <svg width="16" height="7" xmlns="http://www.w3.org/2000/svg"><path stroke="#635FC7" stroke-width="2" fill="none" d="m1 1 4 4 4-4"/></svg>
             </span>
           </Listbox.Button>
           <Transition
@@ -37,7 +32,7 @@ export default function Statuses() {
                   key={statusIdx}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
+                      active ? 'bg-indigo-100 text-indigo-500' : 'text-gray-900'
                     }`
                   }
                   value={status}
@@ -52,7 +47,7 @@ export default function Statuses() {
                         {status.name}
                       </span>
                       {selected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-400">
                           <CheckIcon className="h-5 w-5" aria-hidden="true" />
                         </span>
                       ) : null}
