@@ -42,6 +42,20 @@
   transform: translateX(-300px);
   text-align: justify;
 }
-/* .dialog {
-  transition: all 0.7s ease-in-out;
-} */
+.task-background {
+  background-color: hsl(240, 14%, 23.5%);
+}
+.indigo {
+  background-color: hsl(243, 47%, 58%)!important;
+}
+.indigo-text {
+  color: hsl(243, 47%, 58%)!important;
+}
+.indigo:hover {
+  background-color: white!important;
+  color: hsl(243, 47%, 58%)!important;
+}
+.indigo-text:hover {
+  background-color: hsl(243, 47%, 58%)!important;
+  color: white!important;
+}
