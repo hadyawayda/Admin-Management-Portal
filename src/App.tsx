@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useState } from 'react'
 import './App.css'
+import Main from './Body'
 import Form from './Form Task'
 
 type Subtasks = {
@@ -29,6 +30,7 @@ function App() {
   const [boards, setBoards] = useState<Boards[]>([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [createBoard, setCreateBoard] = useState(false);
+  const [selectedBoard, setSelectedBoard] = useState(boards[0])
 
   async function getData () {
     const res = await fetch('./data.json');
@@ -38,7 +40,6 @@ function App() {
   useEffect(() => {
     getData();
   }, [])
-  console.log(boards);
 
   function handleSidebar () {
     setIsSidebarOpen(!isSidebarOpen)
@@ -82,8 +83,16 @@ function App() {
           
         </div>
       </div>
-      <div className="card">
-        xxxxxxxxxxxxxxxxxxxxxxx
+      <div className="flex w-full flex-col justify-between">
+        <div className="flex justify-between h-24 w-full p-6 border-b border-gray-600">
+          <div>
+            Platform Launch
+          </div>
+          <div>
+            + Add new task
+          </div>
+        </div>
+        <Main />
       </div>
       <Transition appear show={createBoard} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={handleCloseCreateBoard}>
