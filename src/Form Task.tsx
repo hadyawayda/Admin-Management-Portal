@@ -78,13 +78,13 @@ function Form() {
                   <div className="flex justify-between items-center">
                     <input key={subtask.id} type="text" onChange={handleSubtask} placeholder={subtask.title}
                     className='task-background grow mt-3 hover:border-indigo-500 focus:border-white transition-colors duration-300 border-gray-500 border-opacity-30 border-solid border-2 rounded-md h-11 p-4 text-white placeholder-gray-500' />
-                    <button type="button" onClick={() => handleRemoveSubtask(index)} className="w-8 ml-2 mt-2.5 flex justify-center items-center">
+                    <button type="button" onClick={() => handleRemoveSubtask(index)} className="w-8 h-8 ml-2 mt-2.5 flex justify-center items-center hover:border-indigo-500 focus:border-white transition-colors duration-300 border-opacity-30 focus:border-solid focus:border-2 rounded-md">
                       <svg className="" width="15" height="15" xmlns="http://www.w3.org/2000/svg"><g fill="#828FA3" fill-rule="evenodd"><path d="m12.728 0 2.122 2.122L2.122 14.85 0 12.728z"/><path d="M0 2.122 2.122 0 14.85 12.728l-2.122 2.122z"/></g></svg>
                     </button>
                   </div>  
                 ))}
                 
-                <button onClick={handleAddSubtask} className='bg-white mt-4 p-3 rounded-full indigo-text transition-colors duration-300 focus:border-white '>+ Add New Subtask</button>
+                <button onClick={handleAddSubtask} className='bg-white mt-4 p-2.5 rounded-full indigo-text transition-colors duration-300'>+ Add New Subtask</button>
               </div>
               <div className="flex flex-col mt-8 justify-around">
                 Status
@@ -92,8 +92,8 @@ function Form() {
               </div>
               <button
                 type="submit"
-                className="inline-flex justify-center w-full mb-4 mt-8 rounded-full bg-indigo-500 p-3
-                  text-white transition-colors duration-300 indigo"
+                className="inline-flex justify-center w-full mb-4 mt-8 rounded-full bg-indigo-500 p-2.5
+                  text-white transition-colors duration-300 border-2 border-transparent focus:border-white focus:border-2 focus:border-solid indigo"
               >
                 Create Task
               </button>
