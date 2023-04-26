@@ -21,9 +21,6 @@
     animation: logo-spin infinite 20s linear;
   }
 }
-.buttons:focus {
-  background: violet;
-}
 .spacing {
   letter-spacing: 3px;
   font-weight: 600;
@@ -32,8 +29,8 @@
 .toggle {
   background-color: rgb(113, 113, 243);
 }
-.boards:focus {
-  background: rgb(113, 113, 243);
+.boards {
+  background: rgb(113, 113, 243)!important;
 }
 .sidebar {
   transition: all 0.35s cubic-bezier(0.18, 0.19, 0.52, 1.18)!important;
@@ -58,4 +55,10 @@
 .indigo-text:hover {
   background-color: hsl(243, 47%, 58%)!important;
   color: white!important;
+}
+.body-bg{
+  background-color: hsl(240deg 15.38% 15.29%);
+}
+.tasks {
+  background-color: rgb(44 44 56)!important;
 }
